@@ -159,6 +159,7 @@ sub _load {
     }
 
     my @results;
+			warn $@ if $@;
 
     for my $filename ( @{ $args->{ files } } ) {
 
@@ -179,7 +180,7 @@ sub _load {
                 = eval { $loader->load( $filename, $loader_args{ $loader } ); };
 
             # fatal error if we used extension matching
-            croak "Error parsing file: $filename" if $@ and $use_ext_lut;
+            croak "Error parsing $filename: $@" if $@ and $use_ext_lut;
             next if $@ or !@configs;
 
             # post-process config with a filter callback

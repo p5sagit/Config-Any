@@ -1,5 +1,7 @@
 Revision history for Config-Any
 
+    - Show actual parse error when parse fails (Marcus Ramberg).
+
 0.12 Mon 07 Apr 2008
     - ensure Perl loader dies on a failed require() (RT #32995)
 
