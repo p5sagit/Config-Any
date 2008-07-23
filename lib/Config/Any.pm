@@ -159,7 +159,6 @@ sub _load {
     }
 
     my @results;
-			warn $@ if $@;
 
     for my $filename ( @{ $args->{ files } } ) {
 
