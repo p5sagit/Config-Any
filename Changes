@@ -4,6 +4,7 @@ Revision history for Config-Any
     - show actual parse error when parse fails (Marcus Ramberg)
     - ensure Config::Tiny parse errors are trapped
     - added tests for each format to ensure they throw parse errors
+    - added a caveat regarding XML::Simple's strict mode (Peter Corlett)
 
 0.12 Mon 07 Apr 2008
     - ensure Perl loader dies on a failed require() (RT #32995)

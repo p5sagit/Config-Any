@@ -84,6 +84,17 @@ sub is_supported {
     return $@ ? 0 : 1;
 }
 
+=head1 CAVEATS
+
+=head2 Strict Mode
+
+If, by some chance, L<XML::Simple> has already been loaded with the strict
+flag turned on, then you will likely get errors as warnings will become
+fatal exceptions and certain arguments to XMLin() will no longer be optional.
+
+See L<XML::Simple's strict mode documentation|XML::Simple/STRICT_MODE> for
+more information.
+
 =head1 AUTHORS
 
 Brian Cassidy E<lt>bricas@cpan.orgE<gt>
