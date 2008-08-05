@@ -1,4 +1,4 @@
-use inc::Module::Install 0.71;
+use inc::Module::Install 0.76;
 
 if ( -e 'MANIFEST.SKIP' ) {
     system( 'pod2text lib/Config/Any.pm > README' );

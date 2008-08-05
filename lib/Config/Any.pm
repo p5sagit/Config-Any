@@ -298,7 +298,7 @@ L<http://rt.cpan.org>.
 
 =head1 AUTHOR
 
-Joel Bernstein  E<lt>rataxis@cpan.orgE<gt>
+Joel Bernstein E<lt>rataxis@cpan.orgE<gt>
 
 =head1 CONTRIBUTORS
 
