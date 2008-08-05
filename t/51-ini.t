@@ -49,9 +49,9 @@ else {
 
 # test invalid config
 {
-    my $file   = 't/invalid/conf.ini';
+    my $file = 't/invalid/conf.ini';
     my $config = eval { Config::Any::INI->load( $file ) };
 
     ok( !$config, 'config load failed' );
-    ok( $@, "error thrown ($@)" ); 
+    ok( $@, "error thrown ($@)" );
 }

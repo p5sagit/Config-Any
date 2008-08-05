@@ -19,9 +19,9 @@ else {
 
 # test invalid config
 {
-    my $file   = 't/invalid/conf.yml';
+    my $file = 't/invalid/conf.yml';
     my $config = eval { Config::Any::YAML->load( $file ) };
 
     ok( !$config, 'config load failed' );
-    ok( $@, "error thrown ($@)" ); 
+    ok( $@, "error thrown ($@)" );
 }

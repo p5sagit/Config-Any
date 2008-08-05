@@ -17,7 +17,7 @@ eval { Config::Any::INI->load( $cfg_file ); };
 SKIP: {
     skip "File loading backend for INI not found", 14 if $@;
 
-    my $struct; # used to make sure parsing works for arrays and hashes
+    my $struct;    # used to make sure parsing works for arrays and hashes
 
     # force_plugins
     {
@@ -65,10 +65,11 @@ SKIP: {
         my $ref = blessed $result ? reftype $result : ref $result;
         is( substr( $ref, 0, 4 ), 'HASH', 'hashref' );
 
-        is_deeply( $result, $struct, 'load_files return an hashref (flatten_to_hash)' );
+        is_deeply( $result, $struct,
+            'load_files return an hashref (flatten_to_hash)' );
     }
-     
-    # use_ext  
+
+    # use_ext
     {
         ok( my $result = Config::Any->load_files(
                 {   files         => [ $cfg_file ],

@@ -19,9 +19,9 @@ else {
 
 # test invalid config
 {
-    my $file   = 't/invalid/conf.xml';
+    my $file = 't/invalid/conf.xml';
     my $config = eval { Config::Any::XML->load( $file ) };
 
     ok( !$config, 'config load failed' );
-    ok( $@, "error thrown ($@)" ); 
+    ok( $@, "error thrown ($@)" );
 }

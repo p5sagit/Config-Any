@@ -18,9 +18,9 @@ use Config::Any::Perl;
 
 # test invalid config
 {
-    my $file   = 't/invalid/conf.pl';
+    my $file = 't/invalid/conf.pl';
     my $config = eval { Config::Any::Perl->load( $file ) };
 
     ok( !$config, 'config load failed' );
-    ok( $@, "error thrown ($@)" ); 
+    ok( $@, "error thrown ($@)" );
 }

@@ -26,9 +26,9 @@ else {
 
 # test invalid config
 {
-    my $file   = 't/invalid/conf.conf';
+    my $file = 't/invalid/conf.conf';
     my $config = eval { Config::Any::General->load( $file ) };
 
     ok( !$config, 'config load failed' );
-    ok( $@, "error thrown ($@)" ); 
+    ok( $@, "error thrown ($@)" );
 }

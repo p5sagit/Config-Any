@@ -50,7 +50,7 @@ Revision history for Config-Any
 0.05  Wed Feb 21 22:00:00 2007
     - added support for (requested by Evan Kaufman):
       + 'force_plugins => [ qw(Config::Any::Foo Config::Any::Blah) ]' parameter
-	    to load_(files|stems)
+        to load_(files|stems)
       + $Config::Any::INI::MAP_SECTION_SPACE_TO_NESTED_KEY - boolean, defaulting
         to on, controlling whether to map spaces in INI section headings 
         to nested hashrefs
