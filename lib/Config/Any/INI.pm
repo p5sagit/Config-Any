@@ -45,6 +45,9 @@ sub load {
 
     require Config::Tiny;
     my $config = Config::Tiny->read( $file );
+
+    die $Config::Tiny::errstr if not defined $config;
+
     my $out = delete $config->{ _ } || {};
 
     for my $k ( keys %$config ) {

@@ -8,7 +8,7 @@ if ( !Config::Any::INI->is_supported ) {
     plan skip_all => 'INI format not supported';
 }
 else {
-    plan tests => 11;
+    plan tests => 13;
 }
 
 {
@@ -45,4 +45,13 @@ else {
         );
     ok( $config, 'config loaded' );
     is_deeply( $config, \%expected, 'subsections parsed properly' );
+}
+
+# test invalid config
+{
+    my $file   = 't/invalid/conf.ini';
+    my $config = eval { Config::Any::INI->load( $file ) };
+
+    ok( !$config, 'config load failed' );
+    ok( $@, "error thrown ($@)" ); 
 }

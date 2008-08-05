@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 3;
+use Test::More tests => 5;
 
 use Config::Any::Perl;
 
@@ -16,3 +16,11 @@ use Config::Any::Perl;
     is_deeply( $config_load2, $config, 'multiple loads of the same file' );
 }
 
+# test invalid config
+{
+    my $file   = 't/invalid/conf.pl';
+    my $config = eval { Config::Any::Perl->load( $file ) };
+
+    ok( !$config, 'config load failed' );
+    ok( $@, "error thrown ($@)" ); 
+}

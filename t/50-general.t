@@ -8,7 +8,7 @@ if ( !Config::Any::General->is_supported ) {
     plan skip_all => 'Config::General format not supported';
 }
 else {
-    plan tests => 4;
+    plan tests => 6;
 }
 
 {
@@ -22,4 +22,13 @@ else {
     my $config = Config::Any::General->load( 't/conf/conf.conf',
         { -LowerCaseNames => 1 } );
     ok( exists $config->{ component } );
+}
+
+# test invalid config
+{
+    my $file   = 't/invalid/conf.conf';
+    my $config = eval { Config::Any::General->load( $file ) };
+
+    ok( !$config, 'config load failed' );
+    ok( $@, "error thrown ($@)" ); 
 }
