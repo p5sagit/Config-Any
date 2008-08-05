@@ -5,6 +5,8 @@ Revision history for Config-Any
     - ensure Config::Tiny parse errors are trapped
     - added tests for each format to ensure they throw parse errors
     - added a caveat regarding XML::Simple's strict mode (Peter Corlett)
+    - added a flatten_to_hash option to return a simple key-value hashref
+      instead of the default "arrayref of hashrefs" (Pedro Figueiredo)
 
 0.12 Mon 07 Apr 2008
     - ensure Perl loader dies on a failed require() (RT #32995)
