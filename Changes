@@ -1,6 +1,6 @@
 Revision history for Config-Any
 
-0.14 XXX
+0.14 Wed 06 Aug 2008
     - skip xml failure tests if XML::LibXML < 1.59 is installed, it seems
       to parse anything you throw at it (Matt S. Trout)
 
