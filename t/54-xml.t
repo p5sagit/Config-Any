@@ -19,13 +19,14 @@ else {
 
 # test invalid config
 SKIP: {
-    my $broken_libxml = eval { require XML::LibXML; XML::LibXML->VERSION lt '1.59'; };
+    my $broken_libxml
+        = eval { require XML::LibXML; XML::LibXML->VERSION lt '1.59'; };
     skip 'XML::LibXML < 1.58 has issues', 2 if $broken_libxml;
 
-    local $SIG{__WARN__} = sub {}; # squash warnings from XML::Simple
+    local $SIG{ __WARN__ } = sub { };    # squash warnings from XML::Simple
     my $file = 't/invalid/conf.xml';
     my $config = eval { Config::Any::XML->load( $file ) };
 
     ok( !$config, 'config load failed' );
-    ok( $@, "error thrown ($@)" );
+    ok( $@,       "error thrown ($@)" );
 }

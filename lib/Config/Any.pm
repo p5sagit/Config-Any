@@ -6,7 +6,7 @@ use warnings;
 use Carp;
 use Module::Pluggable::Object ();
 
-our $VERSION = '0.14';
+our $VERSION = '0.15';
 
 =head1 NAME
 
@@ -149,7 +149,10 @@ sub _load {
     my $use_ext_lut = !$force && $args->{ use_ext };
     if ( $use_ext_lut ) {
         for my $plugin ( @plugins ) {
-            $extension_lut{ $_ } = $plugin for $plugin->extensions;
+            for ( $plugin->extensions ) {
+                $extension_lut{ $_ } ||= [];
+                push @{ $extension_lut{ $_ } }, $plugin;
+            }
         }
 
         $extension_re = join( '|', keys %extension_lut );
@@ -174,12 +177,21 @@ sub _load {
 
         if ( $use_ext_lut ) {
             $filename =~ m{\.($extension_re)\z};
-            next unless $1;
-            @try_plugins = $extension_lut{ $1 };
+
+            if( !$1 ) {
+                $filename =~ m{\.([^.]+)\z};
+                croak "There are no loaders available for .${1} files";
+            }
+
+            @try_plugins = @{ $extension_lut{ $1 } };
         }
 
+        # not using use_ext means we try all plugins anyway, so we'll
+        # ignore it for the "unsupported" error
+        my $supported = $use_ext_lut ? 0 : 1;
         for my $loader ( @try_plugins ) {
             next unless $loader->is_supported;
+            $supported = 1;
             my @configs
                 = eval { $loader->load( $filename, $loader_args{ $loader } ); };
 
@@ -196,6 +208,12 @@ sub _load {
                 { $filename => @configs == 1 ? $configs[ 0 ] : \@configs };
             last;
         }
+
+        if ( !$supported ) {
+            croak
+                "Cannot load $filename: required support modules are not available.\nPlease install "
+                . join( " OR ", map { _support_error( $_ ) } @try_plugins );
+        }
     }
 
     if ( defined $args->{ flatten_to_hash } ) {
@@ -204,6 +222,17 @@ sub _load {
     }
 
     return \@results;
+}
+
+sub _support_error {
+    my $module = shift;
+    if ( $module->can( 'requires_all_of' ) ) {
+        return join( ' and ',
+            map { ref $_ ? join( ' ', @$_ ) : $_ } $module->requires_all_of );
+    }
+    if ( $module->can( 'requires_any_of' ) ) {
+        return 'one of ' . join( ' or ', $module->requires_any_of );
+    }
 }
 
 =head2 finder( )
@@ -219,6 +248,7 @@ sub finder {
     my $class  = shift;
     my $finder = Module::Pluggable::Object->new(
         search_path => [ __PACKAGE__ ],
+        except      => [ __PACKAGE__ . '::Base' ],
         require     => 1
     );
     return $finder;
@@ -233,7 +263,8 @@ found by L<Module::Pluggable::Object|Module::Pluggable::Object>.
 
 sub plugins {
     my $class = shift;
-    return $class->finder->plugins;
+    # filter out things that don't look like our plugins
+    return grep { $_->isa( 'Config::Any::Base' ) } $class->finder->plugins;
 }
 
 =head2 extensions( )

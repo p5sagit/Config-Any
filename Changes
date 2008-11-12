@@ -1,5 +1,16 @@
 Revision history for Config-Any
 
+0.15 XXX
+    - when use_ext is true, we will check to see if there are no supported
+      modules for a particular file. instead of the file being skipped, an
+      error will be thrown (RT #38927).
+    - also, when use_ext is true, a fatal error will be thrown if there are
+      no loaders available that understand the file extension.
+    - officially support multiple loaders per extension
+    - add a Config::Any::Base for all loaders to inherit from, plus add
+      a new dependency mechanism: requires_any_of() and requires_all_of().
+    - filter out loaders that don't inherit from Config::Any::Base (RT #40830)
+
 0.14 Wed 06 Aug 2008
     - skip xml failure tests if XML::LibXML < 1.59 is installed, it seems
       to parse anything you throw at it (Matt S. Trout)

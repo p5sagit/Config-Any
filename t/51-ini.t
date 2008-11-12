@@ -53,5 +53,5 @@ else {
     my $config = eval { Config::Any::INI->load( $file ) };
 
     ok( !$config, 'config load failed' );
-    ok( $@, "error thrown ($@)" );
+    ok( $@,       "error thrown ($@)" );
 }

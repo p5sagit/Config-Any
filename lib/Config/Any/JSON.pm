@@ -3,6 +3,8 @@ package Config::Any::JSON;
 use strict;
 use warnings;
 
+use base 'Config::Any::Base';
+
 =head1 NAME
 
 Config::Any::JSON - Load JSON config files
@@ -58,18 +60,14 @@ sub load {
     }
 }
 
-=head2 is_supported( )
+=head2 requires_any_of( )
 
-Returns true if either L<JSON::Syck> or L<JSON> is available.
+Specifies that this modules requires one of L<JSON::Syck> or L<JSON> in 
+order to work.
 
 =cut
 
-sub is_supported {
-    eval { require JSON::Syck; };
-    return 1 unless $@;
-    eval { require JSON; };
-    return $@ ? 0 : 1;
-}
+sub requires_any_of { 'JSON::Syck', 'JSON' }
 
 =head1 AUTHOR
 

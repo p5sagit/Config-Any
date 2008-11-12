@@ -3,6 +3,8 @@ package Config::Any::Perl;
 use strict;
 use warnings;
 
+use base 'Config::Any::Base';
+
 my %cache;
 
 =head1 NAME
@@ -52,16 +54,6 @@ sub load {
     }
 
     return $content;
-}
-
-=head2 is_supported( )
-
-Returns true.
-
-=cut
-
-sub is_supported {
-    return 1;
 }
 
 =head1 AUTHOR

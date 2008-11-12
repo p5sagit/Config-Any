@@ -3,6 +3,8 @@ package Config::Any::XML;
 use strict;
 use warnings;
 
+use base 'Config::Any::Base';
+
 =head1 NAME
 
 Config::Any::XML - Load XML config files
@@ -73,16 +75,13 @@ sub _coerce {
     $out;
 }
 
-=head2 is_supported( )
+=head2 requires_all_of( )
 
-Returns true if L<XML::Simple> is available.
+Specifies that this module requires L<XML::Simple> in order to work.
 
 =cut
 
-sub is_supported {
-    eval { require XML::Simple; };
-    return $@ ? 0 : 1;
-}
+sub requires_all_of { 'XML::Simple' }
 
 =head1 CAVEATS
 

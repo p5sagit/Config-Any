@@ -3,6 +3,8 @@ package Config::Any::YAML;
 use strict;
 use warnings;
 
+use base 'Config::Any::Base';
+
 =head1 NAME
 
 Config::Any::YAML - Load YAML config files
@@ -54,18 +56,14 @@ sub load {
     }
 }
 
-=head2 is_supported( )
+=head2 requires_any_of( )
 
-Returns true if either L<YAML::Syck> or L<YAML> is available.
+Specifies that this modules requires one of L<YAML::Syck> (0.70) or L<YAML> in 
+order to work.
 
 =cut
 
-sub is_supported {
-    eval { require YAML::Syck; YAML::Syck->VERSION( '0.70' ) };
-    return 1 unless $@;
-    eval { require YAML; };
-    return $@ ? 0 : 1;
-}
+sub requires_any_of { [ 'YAML::Syck', '0.70' ], 'YAML' }
 
 =head1 AUTHOR
 

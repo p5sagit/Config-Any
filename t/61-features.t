@@ -59,7 +59,7 @@ SKIP: {
             }
         );
 
-        ok( $result, 'load file with parser forced, flatten to hash' );
+        ok( $result,     'load file with parser forced, flatten to hash' );
         ok( ref $result, 'load_files hashref contains a ref' );
 
         my $ref = blessed $result ? reftype $result : ref $result;

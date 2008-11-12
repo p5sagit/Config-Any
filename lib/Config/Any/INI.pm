@@ -3,6 +3,8 @@ package Config::Any::INI;
 use strict;
 use warnings;
 
+use base 'Config::Any::Base';
+
 our $MAP_SECTION_SPACE_TO_NESTED_KEY = 1;
 
 =head1 NAME
@@ -66,16 +68,13 @@ sub load {
     return $out;
 }
 
-=head2 is_supported( )
+=head2 requires_all_of( )
 
-Returns true if L<Config::Tiny> is available.
+Specifies that this module requires L<Config::Tiny> in order to work.
 
 =cut
 
-sub is_supported {
-    eval { require Config::Tiny; };
-    return $@ ? 0 : 1;
-}
+sub requires_all_of { 'Config::Tiny' }
 
 =head1 PACKAGE VARIABLES
 

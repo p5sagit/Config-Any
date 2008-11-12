@@ -3,6 +3,8 @@ package Config::Any::General;
 use strict;
 use warnings;
 
+use base 'Config::Any::Base';
+
 =head1 NAME
 
 Config::Any::General - Load Config::General files
@@ -68,16 +70,13 @@ sub _test_perl {
     return defined $is_perl_src;
 }
 
-=head2 is_supported( )
+=head2 requires_all_of( )
 
-Returns true if L<Config::General> is available.
+Specifies that this module requires L<Config::General> in order to work.
 
 =cut
 
-sub is_supported {
-    eval { require Config::General; };
-    return $@ ? 0 : 1;
-}
+sub requires_all_of { 'Config::General' }
 
 =head1 AUTHOR
 
