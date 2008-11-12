@@ -1,6 +1,6 @@
 Revision history for Config-Any
 
-0.15 XXX
+0.15 Wed 12 Nov 2008
     - when use_ext is true, we will check to see if there are no supported
       modules for a particular file. instead of the file being skipped, an
       error will be thrown (RT #38927).
