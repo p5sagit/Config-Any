@@ -1,5 +1,10 @@
 Revision history for Config-Any
 
+0.16 Mon 17 Nov 2008
+    - fix up branches test which did not handle the errors thrown by
+      changes from the last release (RT #40948)
+    - fix up error message for "any of" (RT #40972)
+
 0.15 Wed 12 Nov 2008
     - when use_ext is true, we will check to see if there are no supported
       modules for a particular file. instead of the file being skipped, an

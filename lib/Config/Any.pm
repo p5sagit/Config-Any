@@ -6,7 +6,7 @@ use warnings;
 use Carp;
 use Module::Pluggable::Object ();
 
-our $VERSION = '0.15';
+our $VERSION = '0.16';
 
 =head1 NAME
 
@@ -178,7 +178,7 @@ sub _load {
         if ( $use_ext_lut ) {
             $filename =~ m{\.($extension_re)\z};
 
-            if( !$1 ) {
+            if ( !$1 ) {
                 $filename =~ m{\.([^.]+)\z};
                 croak "There are no loaders available for .${1} files";
             }
@@ -231,7 +231,9 @@ sub _support_error {
             map { ref $_ ? join( ' ', @$_ ) : $_ } $module->requires_all_of );
     }
     if ( $module->can( 'requires_any_of' ) ) {
-        return 'one of ' . join( ' or ', $module->requires_any_of );
+        return 'one of '
+            . join( ' or ',
+            map { ref $_ ? join( ' ', @$_ ) : $_ } $module->requires_any_of );
     }
 }
 
@@ -263,6 +265,7 @@ found by L<Module::Pluggable::Object|Module::Pluggable::Object>.
 
 sub plugins {
     my $class = shift;
+
     # filter out things that don't look like our plugins
     return grep { $_->isa( 'Config::Any::Base' ) } $class->finder->plugins;
 }
@@ -277,7 +280,8 @@ parameter to those methods.
 
 sub extensions {
     my $class = shift;
-    my @ext = map { $_->extensions } $class->plugins;
+    my @ext
+        = map { $_->extensions } grep { $_->is_supported } $class->plugins;
     return wantarray ? @ext : \@ext;
 }
 

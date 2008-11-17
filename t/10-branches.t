@@ -38,11 +38,12 @@ use_ok( 'Config::Any' );
     );
 }
 
-# grep out files we don't understand for these tests
-my @files = grep { !m{\.(foo|unsupported)$} } glob( "t/conf/conf.*" );
-my $filter = sub { return };
+# can only be sure that perl files will load
+my @files = ( 't/conf/conf.pl' );
 ok( Config::Any->load_files( { files => \@files, use_ext => 0 } ),
     "use_ext 0 works" );
+
+my $filter = sub { return };
 ok( Config::Any->load_files( { files => \@files, use_ext => 1 } ),
     "use_ext 1 works" );
 
