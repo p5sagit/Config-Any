@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 
+# use Test::Without::Module qw(YAML YAML::Syck Config::General XML::Simple JSON JSON::Syck Config::Tiny );
 use Test::More tests => 10;
 
 use_ok( 'Config::Any' );
@@ -38,8 +39,7 @@ use_ok( 'Config::Any' );
     );
 }
 
-# can only be sure that perl files will load
-my @files = ( 't/conf/conf.pl' );
+my @files = glob( "t/supported/conf.*" );
 ok( Config::Any->load_files( { files => \@files, use_ext => 0 } ),
     "use_ext 0 works" );
 
@@ -62,6 +62,6 @@ eval {
 };
 ok( $@, "filter breaks" );
 
-my @stems = qw(t/conf/conf);
+my @stems = qw(t/supported/conf);
 ok( Config::Any->load_stems( { stems => \@stems, use_ext => 1 } ),
     "load_stems with stems works" );

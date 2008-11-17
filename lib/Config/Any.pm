@@ -281,7 +281,7 @@ parameter to those methods.
 sub extensions {
     my $class = shift;
     my @ext
-        = map { $_->extensions } grep { $_->is_supported } $class->plugins;
+        = map { $_->extensions } $class->plugins;
     return wantarray ? @ext : \@ext;
 }
 
