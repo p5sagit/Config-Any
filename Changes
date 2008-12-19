@@ -1,5 +1,8 @@
 Revision history for Config-Any
 
+0.17 XXX
+    - ensure require() happens against plugin specified in force_plugins.
+
 0.16 Mon 17 Nov 2008
     - fix up branches test which did not handle the errors thrown by
       changes from the last release (RT #40948)

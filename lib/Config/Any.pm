@@ -6,7 +6,7 @@ use warnings;
 use Carp;
 use Module::Pluggable::Object ();
 
-our $VERSION = '0.16';
+our $VERSION = '0.17';
 
 =head1 NAME
 
@@ -142,7 +142,9 @@ sub _load {
     }
 
     # figure out what plugins we're using
-    my @plugins = $force ? @{ $args->{ force_plugins } } : $class->plugins;
+    my @plugins = $force
+        ? map { eval "require $_;"; $_; } @{ $args->{ force_plugins } }
+        : $class->plugins;
 
     # map extensions if we have to
     my ( %extension_lut, $extension_re );
