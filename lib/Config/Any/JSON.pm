@@ -49,25 +49,29 @@ sub load {
     my $content = do { local $/; <$fh> };
     close $fh;
 
-    eval { require JSON::Syck; };
-    if ( $@ ) {
-        require JSON;
-        eval { JSON->VERSION( 2 ); };
-        return $@ ? JSON::jsonToObj( $content ) : JSON::from_json( $content );
+    eval { require JSON::XS; };
+    unless( $@ ) {
+        return JSON::XS::decode_json( $content );
     }
-    else {
+
+    eval { require JSON::Syck; };
+    unless( $@ ) {
         return JSON::Syck::Load( $content );
     }
+
+    require JSON;
+    eval { JSON->VERSION( 2 ); };
+    return $@ ? JSON::jsonToObj( $content ) : JSON::from_json( $content );
 }
 
 =head2 requires_any_of( )
 
-Specifies that this modules requires one of L<JSON::Syck> or L<JSON> in 
-order to work.
+Specifies that this modules requires one of,  L<JSON::XS>, L<JSON::Syck> or
+L<JSON> in order to work.
 
 =cut
 
-sub requires_any_of { 'JSON::Syck', 'JSON' }
+sub requires_any_of { 'JSON::XS', 'JSON::Syck', 'JSON' }
 
 =head1 AUTHOR
 
@@ -91,6 +95,8 @@ it under the same terms as Perl itself.
 =item * L<JSON>
 
 =item * L<JSON::Syck>
+
+=item * L<JSON::XS>
 
 =back
 

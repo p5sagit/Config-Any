@@ -44,16 +44,15 @@ sub load {
     my $file  = shift;
 
     eval { require YAML::Syck; YAML::Syck->VERSION( '0.70' ) };
-    if ( $@ ) {
-        require YAML;
-        return YAML::LoadFile( $file );
-    }
-    else {
+    unless ( $@ ) {
         open( my $fh, $file ) or die $!;
         my $content = do { local $/; <$fh> };
         close $fh;
         return YAML::Syck::Load( $content );
     }
+
+    require YAML;
+    return YAML::LoadFile( $file );
 }
 
 =head2 requires_any_of( )
