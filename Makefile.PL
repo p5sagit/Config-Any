@@ -14,4 +14,6 @@ requires 'Module::Pluggable' => '3.01';
 test_requires 'Test::More';
 
 auto_install;
+resources repository => 'http://dev.catalyst.perl.org/repos/Catalyst/trunk/Config-Any/';
+
 WriteAll;
