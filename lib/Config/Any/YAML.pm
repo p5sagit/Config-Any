@@ -51,8 +51,8 @@ sub load {
     }
 
     Carp::carp
-"Using YAML::Syck or YAML to parse configs is DEPRECATED. Please install ".
-"YAML::XS for proper YAML support";
+        'Use of YAML::Syck or YAML to parse config files is DEPRECATED. '
+        . 'Please install YAML::XS for proper YAML support';
 
     eval { require YAML::Syck; YAML::Syck->VERSION( '0.70' ) };
     unless ( $@ ) {
