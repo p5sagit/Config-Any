@@ -5,6 +5,8 @@ use warnings;
 
 use base 'Config::Any::Base';
 
+use Carp ();
+
 =head1 NAME
 
 Config::Any::YAML - Load YAML config files
@@ -48,6 +50,10 @@ sub load {
         return YAML::XS::LoadFile( $file );
     }
 
+    Carp::carp
+"Using YAML::Syck or YAML to parse configs is DEPRECATED. Please install ".
+"YAML::XS for proper YAML support";
+
     eval { require YAML::Syck; YAML::Syck->VERSION( '0.70' ) };
     unless ( $@ ) {
         open( my $fh, $file ) or die $!;
@@ -62,8 +68,8 @@ sub load {
 
 =head2 requires_any_of( )
 
-Specifies that this modules requires one of L<YAML::Syck> (0.70) or L<YAML> in 
-order to work.
+Specifies that this modules requires one of L<YAML::XS>, L<YAML::Syck> (0.70) or
+L<YAML> in order to work.
 
 =cut
 
@@ -87,6 +93,8 @@ it under the same terms as Perl itself.
 =item * L<Catalyst>
 
 =item * L<Config::Any>
+
+=item * L<YAML::XS>
 
 =item * L<YAML>
 
