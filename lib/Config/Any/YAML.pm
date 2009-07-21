@@ -43,6 +43,11 @@ sub load {
     my $class = shift;
     my $file  = shift;
 
+    eval { require YAML::XS };
+    unless ( $@ ) {
+        return YAML::XS::LoadFile( $file );
+    }
+
     eval { require YAML::Syck; YAML::Syck->VERSION( '0.70' ) };
     unless ( $@ ) {
         open( my $fh, $file ) or die $!;
@@ -62,7 +67,7 @@ order to work.
 
 =cut
 
-sub requires_any_of { [ 'YAML::Syck', '0.70' ], 'YAML' }
+sub requires_any_of { 'YAML::XS', [ 'YAML::Syck', '0.70' ], 'YAML' }
 
 =head1 AUTHOR
 
@@ -70,7 +75,7 @@ Brian Cassidy E<lt>bricas@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007 by Brian Cassidy
+Copyright 2006-2009 by Brian Cassidy
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 

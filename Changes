@@ -1,5 +1,8 @@
 Revision history for Config-Any
 
+0.18 XXX
+    - add YAML::XS to the top of the YAML loaders list
+
 0.17 Thu 05 Feb 2009
     - ensure require() happens against plugin specified in force_plugins.
     - add JSON::XS to the top of the JSON loaders list
