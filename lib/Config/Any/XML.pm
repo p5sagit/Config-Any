@@ -57,14 +57,13 @@ sub load {
 }
 
 sub _coerce {
-
     # coerce the XML-parsed config into the correct format
     my $class  = shift;
     my $config = shift;
     my $out;
     for my $k ( keys %$config ) {
         my $ref = $config->{ $k };
-        my $name = ref $ref ? delete $ref->{ name } : undef;
+        my $name = ref $ref eq 'HASH' ? delete $ref->{ name } : undef;
         if ( defined $name ) {
             $out->{ $k }->{ $name } = $ref;
         }

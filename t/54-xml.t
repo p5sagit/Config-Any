@@ -8,7 +8,7 @@ if ( !Config::Any::XML->is_supported ) {
     plan skip_all => 'XML format not supported';
 }
 else {
-    plan tests => 4;
+    plan tests => 6;
 }
 
 {
@@ -29,4 +29,13 @@ SKIP: {
 
     ok( !$config, 'config load failed' );
     ok( $@,       "error thrown ($@)" );
+}
+
+# test conf file with array ref
+{
+    my $file = 't/conf/conf_arrayref.xml';
+    my $config = eval { Config::Any::XML->load( $file ) };
+
+    ok( $config, 'config loaded' );
+    ok( !$@,     'no error thrown' );
 }
