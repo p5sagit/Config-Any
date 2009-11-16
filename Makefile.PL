@@ -1,4 +1,4 @@
-use inc::Module::Install 0.87;
+use inc::Module::Install 0.91;
 
 if ( -e 'MANIFEST.SKIP' ) {
     system( 'pod2text lib/Config/Any.pm > README' );
@@ -13,7 +13,6 @@ requires 'Module::Pluggable' => '3.01';
 
 test_requires 'Test::More';
 
-auto_install;
 resources repository => 'http://dev.catalyst.perl.org/repos/Catalyst/trunk/Config-Any/';
 
 WriteAll;

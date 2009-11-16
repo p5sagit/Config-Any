@@ -1,6 +1,6 @@
 Revision history for Config-Any
 
-0.18 XXX
+0.18 Mon 16 Nov 2009
     - ensure XML loader's _coerce() method checks specifically for HASH refs
     - add YAML::XS to the top of the YAML loaders list
 
