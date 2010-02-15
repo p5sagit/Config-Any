@@ -1,5 +1,10 @@
 Revision history for Config-Any
 
+0.19 Mon 15 Feb 2010
+    - add JSON::DWIW to the top of the JSON loaders list (caelum)
+    - remove need for caching in Perl loader by using do() instead
+      of require() (caelum)
+
 0.18 Mon 16 Nov 2009
     - ensure XML loader's _coerce() method checks specifically for HASH refs
     - add YAML::XS to the top of the YAML loaders list

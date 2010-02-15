@@ -88,7 +88,7 @@ Joel Bernstein C<< <rataxis@cpan.org> >>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2006-2009 by Brian Cassidy
+Copyright 2006-2010 by Brian Cassidy
 
 Portions Copyright 2006 Portugal Telecom
 
