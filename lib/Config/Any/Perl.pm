@@ -48,12 +48,22 @@ sub load {
     my $file  = shift;
     my $content;
 
-    unless ( $content = $cache{ $file } ) {
-        $content = require $file;
-        $cache{ $file } = $content;
+    my $mtime = (stat($file))[9];
+
+    if ( (not exists $cache{ $file }) || $cache{ $file }{ mtime } < $mtime ) {
+        my $exception;
+        {
+            local $@;
+            $content = do $file;
+            $exception = $@;
+        }
+        die $exception if $exception;
+
+        $cache{ $file }{ mtime   } = $mtime;
+        $cache{ $file }{ content } = $content;
     }
 
-    return $content;
+    return $cache{ $file }{ content };
 }
 
 =head1 AUTHOR

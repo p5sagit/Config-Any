@@ -49,9 +49,18 @@ sub load {
     my $content = do { local $/; <$fh> };
     close $fh;
 
+    eval { require JSON::DWIW; };
+    unless( $@ ) {
+        my $decoder = JSON::DWIW->new;
+        my ( $data, $error ) = $decoder->from_json( $content );
+        die $error if $error;
+        return $data;
+    }
+
     eval { require JSON::XS; };
     unless( $@ ) {
-        return JSON::XS::decode_json( $content );
+        my $decoder = JSON::XS->new->relaxed;
+        return $decoder->decode( $content );
     }
 
     eval { require JSON::Syck; };
@@ -66,12 +75,12 @@ sub load {
 
 =head2 requires_any_of( )
 
-Specifies that this modules requires one of,  L<JSON::XS>, L<JSON::Syck> or
-L<JSON> in order to work.
+Specifies that this modules requires one of,  L<JSON::DWIW>, L<JSON::XS>,
+L<JSON::Syck> or L<JSON> in order to work.
 
 =cut
 
-sub requires_any_of { 'JSON::XS', 'JSON::Syck', 'JSON' }
+sub requires_any_of { 'JSON::DWIW', 'JSON::XS', 'JSON::Syck', 'JSON' }
 
 =head1 AUTHOR
 
@@ -92,11 +101,13 @@ it under the same terms as Perl itself.
 
 =item * L<Config::Any>
 
-=item * L<JSON>
+=item * L<JSON::DWIW>
+
+=item * L<JSON::XS>
 
 =item * L<JSON::Syck>
 
-=item * L<JSON::XS>
+=item * L<JSON>
 
 =back
 
