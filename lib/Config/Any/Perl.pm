@@ -5,8 +5,6 @@ use warnings;
 
 use base 'Config::Any::Base';
 
-my %cache;
-
 =head1 NAME
 
 Config::Any::Perl - Load Perl config files
@@ -47,23 +45,15 @@ sub load {
     my $class = shift;
     my $file  = shift;
     my $content;
-
-    my $mtime = (stat($file))[9];
-
-    if ( (not exists $cache{ $file }) || $cache{ $file }{ mtime } < $mtime ) {
-        my $exception;
-        {
-            local $@;
-            $content = do $file;
-            $exception = $@;
-        }
-        die $exception if $exception;
-
-        $cache{ $file }{ mtime   } = $mtime;
-        $cache{ $file }{ content } = $content;
+    my $exception;
+    {
+        local $@;
+        $content = do $file;
+        $exception = $@;
     }
+    die $exception if $exception;
 
-    return $cache{ $file }{ content };
+    return $content;
 }
 
 =head1 AUTHOR
