@@ -1,5 +1,7 @@
 Revision history for Config-Any
 
+    - enable -ForceArray option by default for Config::General (caelum)
+
 0.19 Mon 15 Feb 2010
     - add JSON::DWIW to the top of the JSON loaders list (caelum)
     - remove need for caching in Perl loader by using do() instead

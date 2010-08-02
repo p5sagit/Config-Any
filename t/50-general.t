@@ -8,7 +8,7 @@ if ( !Config::Any::General->is_supported ) {
     plan skip_all => 'Config::General format not supported';
 }
 else {
-    plan tests => 6;
+    plan tests => 7;
 }
 
 {
@@ -22,6 +22,14 @@ else {
     my $config = Config::Any::General->load( 't/conf/conf.conf',
         { -LowerCaseNames => 1 } );
     ok( exists $config->{ component } );
+}
+
+{
+    my $config = Config::Any::General->load(
+        't/conf/single_element_arrayref.conf'
+    );
+    is_deeply $config->{foo}, [ 'bar' ],
+        'single element arrayref';
 }
 
 # test invalid config

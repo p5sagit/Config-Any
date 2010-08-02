@@ -16,6 +16,7 @@ Loads Config::General files. Example:
     name = TestApp
     <Component Controller::Foo>
         foo bar
+        bar [ arrayref-value ]
     </Component>
     <Model Baz>
         qux xyzzy
@@ -48,6 +49,8 @@ sub load {
     #   return if $class->_test_perl($file);
 
     $args->{ -ConfigFile } = $file;
+
+    $args->{ -ForceArray } = 1 unless exists $args->{ -ForceArray };
 
     require Config::General;
     my $configfile = Config::General->new( %$args );
