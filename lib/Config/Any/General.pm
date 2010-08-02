@@ -50,9 +50,14 @@ sub load {
 
     $args->{ -ConfigFile } = $file;
 
+    require Config::General;
+
+    if (Config::General->VERSION < 2.47) {
+        die "Config::General version 2.47 or greater required";
+    }
+
     $args->{ -ForceArray } = 1 unless exists $args->{ -ForceArray };
 
-    require Config::General;
     my $configfile = Config::General->new( %$args );
     my $config     = { $configfile->getall };
 
