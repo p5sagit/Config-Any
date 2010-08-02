@@ -52,10 +52,6 @@ sub load {
 
     require Config::General;
 
-    if (Config::General->VERSION < 2.47) {
-        die "Config::General version 2.47 or greater required";
-    }
-
     $args->{ -ForceArray } = 1 unless exists $args->{ -ForceArray };
 
     my $configfile = Config::General->new( %$args );
@@ -84,7 +80,7 @@ Specifies that this module requires L<Config::General> in order to work.
 
 =cut
 
-sub requires_all_of { 'Config::General' }
+sub requires_all_of { [ 'Config::General', '2.47' ] }
 
 =head1 AUTHOR
 
