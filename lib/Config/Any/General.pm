@@ -2,6 +2,7 @@ package Config::Any::General;
 
 use strict;
 use warnings;
+use Carp;
 
 use base 'Config::Any::Base';
 
@@ -52,6 +53,9 @@ sub load {
 
     require Config::General;
 
+    croak "Config::General 2.47 or later required"
+        unless Config::General->VERSION('2.47');
+
     $args->{ -ForceArray } = 1 unless exists $args->{ -ForceArray };
 
     my $configfile = Config::General->new( %$args );
@@ -80,7 +84,7 @@ Specifies that this module requires L<Config::General> in order to work.
 
 =cut
 
-sub requires_all_of { [ 'Config::General', '2.47' ] }
+sub requires_all_of { [ 'Config::General' ] }
 
 =head1 AUTHOR
 
