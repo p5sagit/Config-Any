@@ -40,8 +40,13 @@ use_ok( 'Config::Any' );
 }
 
 my @files = glob( "t/supported/conf.*" );
-ok( Config::Any->load_files( { files => \@files, use_ext => 0 } ),
-    "use_ext 0 works" );
+{
+    require Config::Any::General;
+    local $SIG{ __WARN__ } = sub { }
+        if Config::Any::General->is_supported;
+    ok( Config::Any->load_files( { files => \@files, use_ext => 0 } ),
+        "use_ext 0 works" );
+}
 
 my $filter = sub { return };
 ok( Config::Any->load_files( { files => \@files, use_ext => 1 } ),

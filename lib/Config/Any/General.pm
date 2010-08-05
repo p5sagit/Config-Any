@@ -2,7 +2,6 @@ package Config::Any::General;
 
 use strict;
 use warnings;
-use Carp;
 
 use base 'Config::Any::Base';
 
