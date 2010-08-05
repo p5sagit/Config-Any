@@ -25,11 +25,9 @@ else {
 }
 
 {
-    my $config = Config::Any::General->load(
-        't/conf/single_element_arrayref.conf'
-    );
-    is_deeply $config->{foo}, [ 'bar' ],
-        'single element arrayref';
+    my $config
+        = Config::Any::General->load( 't/conf/single_element_arrayref.conf' );
+    is_deeply $config->{ foo }, [ 'bar' ], 'single element arrayref';
 }
 
 # test invalid config
