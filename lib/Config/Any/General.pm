@@ -52,9 +52,7 @@ sub load {
     $args->{ -ConfigFile } = $file;
 
     require Config::General;
-
-    croak "Config::General 2.47 or later required"
-        unless Config::General->VERSION('2.47');
+    Config::General->VERSION('2.47');
 
     $args->{ -ForceArray } = 1 unless exists $args->{ -ForceArray };
 
