@@ -1,5 +1,8 @@
 Revision history for Config-Any
 
+0.21 TO BE RELEASED
+    - fix t/64-extfail.t to pass when t/lib is in @INC
+
 0.20 Fri 06 Aug 2010
     - enable -ForceArray option by default for Config::General (caelum)
 
