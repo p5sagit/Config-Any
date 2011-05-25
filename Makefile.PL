@@ -1,4 +1,4 @@
-use inc::Module::Install 0.99;
+use inc::Module::Install 1.00;
 
 if ( -e 'MANIFEST.SKIP' ) {
     system( 'pod2text lib/Config/Any.pm > README' );
@@ -25,6 +25,6 @@ if ( $Module::Install::AUTHOR ) {
 }
 
 resources repository =>
-    'http://dev.catalyst.perl.org/repos/Catalyst/trunk/Config-Any/';
+    'git://git.shadowcat.co.uk/p5sagit/Config-Any.git';
 
 WriteAll;
