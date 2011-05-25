@@ -1,6 +1,6 @@
 Revision history for Config-Any
 
-0.21 TO BE RELEASED
+0.21 2011-05-25
     - fix t/64-extfail.t to pass when t/lib is in @INC
 
 0.20 2010-08-06
