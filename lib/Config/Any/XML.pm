@@ -76,11 +76,12 @@ sub _coerce {
 
 =head2 requires_all_of( )
 
-Specifies that this module requires L<XML::Simple> in order to work.
+Specifies that this module requires L<XML::Simple> and L<XML::NamespaceSupport>
+in order to work.
 
 =cut
 
-sub requires_all_of { 'XML::Simple' }
+sub requires_all_of { 'XML::Simple', 'XML::NamespaceSupport' }
 
 =head1 CAVEATS
 

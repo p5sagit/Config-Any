@@ -41,6 +41,8 @@ Attempts to load C<$file> as a YAML file.
 
 =cut
 
+our $NO_YAML_XS_WARNING;
+
 sub load {
     my $class = shift;
     my $file  = shift;
@@ -52,7 +54,8 @@ sub load {
 
     Carp::carp
         'Use of YAML::Syck or YAML to parse config files is DEPRECATED. '
-        . 'Please install YAML::XS for proper YAML support';
+        . 'Please install YAML::XS for proper YAML support'
+            unless $NO_YAML_XS_WARNING;
 
     eval { require YAML::Syck; YAML::Syck->VERSION( '0.70' ) };
     unless ( $@ ) {

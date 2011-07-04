@@ -1,10 +1,14 @@
 use strict;
 use warnings;
+no warnings 'once';
 
 # use Test::Without::Module qw(YAML YAML::Syck Config::General XML::Simple JSON JSON::Syck Config::Tiny );
-use Test::More tests => 10;
+use Test::More tests => 11;
 
 use_ok( 'Config::Any' );
+use_ok( 'Config::Any::YAML' );
+
+$Config::Any::YAML::NO_YAML_XS_WARNING = 1;
 
 {
     my @warnings;

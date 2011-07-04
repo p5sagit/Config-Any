@@ -1,6 +1,7 @@
 package MockApp;
 use strict;
 use warnings;
+no warnings 'once';
 
 $|++;
 use Test::More tests => 54;
@@ -12,6 +13,8 @@ use Config::Any::JSON;
 use Config::Any::Perl;
 use Config::Any::XML;
 use Config::Any::YAML;
+
+$Config::Any::YAML::NO_YAML_XS_WARNING = 1;
 
 our %ext_map = (
     conf => 'Config::Any::General',
