@@ -1,5 +1,9 @@
 Revision history for Config-Any
 
+0.22 2011-07-04
+    - add XML::NamespaceSupport to XML format deps, silence YAML warnings in 
+      tests (caelum)
+
 0.21 2011-05-25
     - fix t/64-extfail.t to pass when t/lib is in @INC
 
