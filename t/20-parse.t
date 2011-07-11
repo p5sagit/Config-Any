@@ -31,12 +31,7 @@ sub load_parser_for {
 
     my ( $ext ) = $f =~ m{ \. ( [^\.]+ ) \z }xms;
     my $mod = $ext_map{ $ext };
-    my $mod_load_result;
-    eval {
-        $mod_load_result = $mod->load( $f );
-        delete $INC{ $f } if $ext eq 'pl';
-    };
-    return $@ ? ( 1, $mod ) : ( 0, $mod );
+    return !$mod->is_supported ? ( 1, $mod ) : ( 0, $mod );
 }
 
 for my $f ( map { "t/conf/conf.$_" } keys %ext_map ) {
