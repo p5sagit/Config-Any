@@ -68,6 +68,12 @@ sub load {
         return JSON::Syck::Load( $content );
     }
 
+    eval { require JSON::PP; JSON::PP->VERSION( 2 ); };
+    unless( $@ ) {
+        my $decoder = JSON::PP->new->relaxed;
+        return $decoder->decode( $content );
+    }
+
     require JSON;
     eval { JSON->VERSION( 2 ); };
     return $@ ? JSON::jsonToObj( $content ) : JSON::from_json( $content );
@@ -80,7 +86,7 @@ L<JSON::Syck> or L<JSON> in order to work.
 
 =cut
 
-sub requires_any_of { 'JSON::DWIW', 'JSON::XS', 'JSON::Syck', 'JSON' }
+sub requires_any_of { 'JSON::DWIW', 'JSON::XS', 'JSON::Syck', 'JSON::PP', 'JSON' }
 
 =head1 AUTHOR
 
@@ -88,7 +94,7 @@ Brian Cassidy E<lt>bricas@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2006-2011 by Brian Cassidy
+Copyright 2006-2013 by Brian Cassidy
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 
