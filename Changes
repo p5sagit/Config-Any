@@ -1,5 +1,8 @@
 Revision history for Config-Any
 
+0.24 2013-09-10
+    - remove 4-year-old warning about YAML::XS not being installed
+
 0.23 2011-07-13
     - fix test suite's method of checking availability of plugins
 

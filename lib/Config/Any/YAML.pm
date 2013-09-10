@@ -41,8 +41,6 @@ Attempts to load C<$file> as a YAML file.
 
 =cut
 
-our $NO_YAML_XS_WARNING;
-
 sub load {
     my $class = shift;
     my $file  = shift;
@@ -51,11 +49,6 @@ sub load {
     unless ( $@ ) {
         return YAML::XS::LoadFile( $file );
     }
-
-    Carp::carp
-        'Use of YAML::Syck or YAML to parse config files is DEPRECATED. '
-        . 'Please install YAML::XS for proper YAML support'
-            unless $NO_YAML_XS_WARNING;
 
     eval { require YAML::Syck; YAML::Syck->VERSION( '0.70' ) };
     unless ( $@ ) {
@@ -84,7 +77,7 @@ Brian Cassidy E<lt>bricas@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2006-2011 by Brian Cassidy
+Copyright 2006-2013 by Brian Cassidy
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 

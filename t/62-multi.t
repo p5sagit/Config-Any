@@ -7,8 +7,6 @@ use Test::More tests => 3;
 use Config::Any;
 use Config::Any::YAML;
 
-$Config::Any::YAML::NO_YAML_XS_WARNING = 1;
-
 my $file   = 't/multi/conf.yml';
 my @expect = (
     {   name  => 'TestApp',

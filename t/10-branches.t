@@ -8,7 +8,6 @@ use Test::More tests => 11;
 use_ok( 'Config::Any' );
 use_ok( 'Config::Any::YAML' );
 
-$Config::Any::YAML::NO_YAML_XS_WARNING = 1;
 
 {
     my @warnings;

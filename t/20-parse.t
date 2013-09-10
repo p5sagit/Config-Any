@@ -14,8 +14,6 @@ use Config::Any::Perl;
 use Config::Any::XML;
 use Config::Any::YAML;
 
-$Config::Any::YAML::NO_YAML_XS_WARNING = 1;
-
 our %ext_map = (
     conf => 'Config::Any::General',
     ini  => 'Config::Any::INI',
