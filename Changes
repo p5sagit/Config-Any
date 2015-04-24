@@ -1,5 +1,8 @@
 Revision history for Config-Any
 
+0.25 2015-04-23
+    - do not clobber $@ (RT #103061)
+
 0.24 2013-09-10
     - remove 4-year-old warning about YAML::XS not being installed
     - add JSON::PP to list of available JSON parsers (RT #86959)
