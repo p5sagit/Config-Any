@@ -195,15 +195,15 @@ sub _load {
             next unless $loader->is_supported;
             $supported = 1;
             my @configs;
-            my $ok = do {
+            my $err = do {
                 local $@;
                 @configs = eval { $loader->load( $filename, $loader_args{ $loader } ); };
-                1;
+                $@;
             };
 
             # fatal error if we used extension matching
-            croak "Error parsing $filename: $@" if !$ok and $use_ext_lut;
-            next if !$ok or !@configs;
+            croak "Error parsing $filename: $err" if $err and $use_ext_lut;
+            next if $err or !@configs;
 
             # post-process config with a filter callback
             if ( $args->{ filter } ) {
