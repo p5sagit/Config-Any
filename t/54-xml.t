@@ -2,13 +2,14 @@ use strict;
 use warnings;
 
 use Test::More;
+use Config::Any;
 use Config::Any::XML;
 
 if ( !Config::Any::XML->is_supported ) {
     plan skip_all => 'XML format not supported';
 }
 else {
-    plan tests => 6;
+    plan tests => 8;
 }
 
 {
@@ -39,3 +40,13 @@ SKIP: {
     ok( $config, 'config loaded' );
     ok( !$@,     'no error thrown' );
 }
+
+# parse error generated on invalid config
+{
+    my $file = 't/invalid/conf.xml';
+    my $config = eval { Config::Any->load_files( { files => [$file], use_ext => 1} ) };
+
+    ok( !$config, 'config load failed' );
+    ok( $@,       "error thrown ($@)" );
+}
+
