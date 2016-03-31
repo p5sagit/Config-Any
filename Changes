@@ -1,5 +1,9 @@
 Revision history for Config-Any
 
+0.27 2016-03-31
+    - depend on Module::Pluggable::Object directly instead of assuming it is 
+      bundled with Module::Pluggable (RT #113148)
+
 0.26 2015-04-29
     - fix error reporting from code applied in 0.25 (RT #104079)
 
