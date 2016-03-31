@@ -9,7 +9,7 @@ name 'Config-Any';
 
 all_from 'lib/Config/Any.pm';
 
-requires 'Module::Pluggable' => '3.01';
+requires 'Module::Pluggable::Object' => '3.6';
 
 # Upgrade Config::General is necessary
 if ( can_use( 'Config::General' ) && !can_use( 'Config::General', '2.47' ) ) {
