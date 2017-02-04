@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use base 'Config::Any::Base';
+use File::Spec;
 
 =head1 NAME
 
@@ -48,7 +49,7 @@ sub load {
     my( $exception, $content );
     {
         local $@;
-        $content = do $file;
+        $content = do File::Spec->rel2abs($file);
         $exception = $@;
     }
     die $exception if $exception;
