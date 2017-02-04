@@ -1,5 +1,9 @@
 Revision history for Config-Any
 
+    - support Cpanel::JSON::XS and JSON::MaybeXS for loading JSON
+    - decode UTF-8 config files properly
+    - load perl files directly, never possibly searching @INC
+
 0.27 2016-03-31
     - depend on Module::Pluggable::Object directly instead of assuming it is 
       bundled with Module::Pluggable (RT #113148)
