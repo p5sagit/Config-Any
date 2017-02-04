@@ -50,7 +50,15 @@ sub load {
     my $content = do { local $/; <$fh> };
     close $fh;
 
-    if ( eval { require JSON::DWIW } ) {
+    if ( eval { require Cpanel::JSON::XS } ) {
+        my $decoder = Cpanel::JSON::XS->new->utf8->relaxed;
+        return $decoder->decode( $content );
+    }
+    elsif ( eval { require JSON::MaybeXS } ) {
+        my $decoder = JSON::MaybeXS::JSON()->new->utf8->relaxed;
+        return $decoder->decode( $content );
+    }
+    elsif ( eval { require JSON::DWIW } ) {
         my $decoder = JSON::DWIW->new;
         my ( $data, $error ) = $decoder->from_json( $content );
         die $error if $error;
