@@ -49,34 +49,30 @@ sub load {
     my $content = do { local $/; <$fh> };
     close $fh;
 
-    eval { require JSON::DWIW; };
-    unless( $@ ) {
+    if ( eval { require JSON::DWIW } ) {
         my $decoder = JSON::DWIW->new;
         my ( $data, $error ) = $decoder->from_json( $content );
         die $error if $error;
         return $data;
     }
-
-    eval { require JSON::XS; };
-    unless( $@ ) {
+    elsif ( eval { require JSON::XS } ) {
         my $decoder = JSON::XS->new->relaxed;
         return $decoder->decode( $content );
     }
-
-    eval { require JSON::Syck; };
-    unless( $@ ) {
+    elsif ( eval { require JSON::Syck } ) {
         return JSON::Syck::Load( $content );
     }
-
-    eval { require JSON::PP; JSON::PP->VERSION( 2 ); };
-    unless( $@ ) {
+    elsif ( eval { require JSON::PP; JSON::PP->VERSION( 2 ); } ) {
         my $decoder = JSON::PP->new->relaxed;
         return $decoder->decode( $content );
     }
-
     require JSON;
-    eval { JSON->VERSION( 2 ); };
-    return $@ ? JSON::jsonToObj( $content ) : JSON::from_json( $content );
+    if ( eval { JSON->VERSION( 2 ) } ) {
+        return JSON::from_json( $content );
+    }
+    else {
+        return JSON::jsonToObj( $content );
+    }
 }
 
 =head2 requires_any_of( )
