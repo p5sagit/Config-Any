@@ -45,7 +45,8 @@ sub load {
     my $class = shift;
     my $file  = shift;
 
-    open( my $fh, $file ) or die $!;
+    open( my $fh, '<', $file ) or die $!;
+    binmode $fh;
     my $content = do { local $/; <$fh> };
     close $fh;
 
@@ -56,19 +57,20 @@ sub load {
         return $data;
     }
     elsif ( eval { require JSON::XS } ) {
-        my $decoder = JSON::XS->new->relaxed;
+        my $decoder = JSON::XS->new->utf8->relaxed;
         return $decoder->decode( $content );
     }
     elsif ( eval { require JSON::Syck } ) {
-        return JSON::Syck::Load( $content );
+        require Encode;
+        return JSON::Syck::Load( Encode::decode('UTF-8', $content ) );
     }
     elsif ( eval { require JSON::PP; JSON::PP->VERSION( 2 ); } ) {
-        my $decoder = JSON::PP->new->relaxed;
+        my $decoder = JSON::PP->new->utf8->relaxed;
         return $decoder->decode( $content );
     }
     require JSON;
     if ( eval { JSON->VERSION( 2 ) } ) {
-        return JSON::from_json( $content );
+        return JSON::decode_json( $content );
     }
     else {
         return JSON::jsonToObj( $content );
