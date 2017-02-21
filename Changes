@@ -1,5 +1,6 @@
 Revision history for Config-Any
 
+0.28 - 2017-02-21
     - support Cpanel::JSON::XS and JSON::MaybeXS for loading JSON
     - decode UTF-8 config files properly
     - load perl files directly, never possibly searching @INC
