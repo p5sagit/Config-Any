@@ -5,6 +5,7 @@ use warnings;
 
 use base 'Config::Any::Base';
 use File::Spec;
+use Cwd ();
 
 =head1 NAME
 
@@ -49,7 +50,11 @@ sub load {
     my( $exception, $content );
     {
         local $@;
-        $content = do File::Spec->rel2abs($file);
+        # previously this would load based on . being in @INC, and wouldn't
+        # trigger taint errors even if '.' probably should have been considered
+        # tainted.  untaint for backwards compatibility.
+        my ($cwd) = Cwd::cwd() =~ /\A(.*)\z/s;
+        $content = do File::Spec->rel2abs($file, $cwd);
         $exception = $@;
     }
     die $exception if $exception;
