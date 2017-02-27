@@ -1,5 +1,8 @@
 Revision history for Config-Any
 
+    - allow loading relative perl files even under taint mode (RT#120371)
+    - throw errors when attempting to load perl files that do not exist
+
 0.28 - 2017-02-21
     - support Cpanel::JSON::XS and JSON::MaybeXS for loading JSON
     - decode UTF-8 config files properly
