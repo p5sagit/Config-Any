@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 7;
+use Test::More tests => 9;
 use Config::Any;
 use Config::Any::Perl;
 
@@ -19,8 +19,13 @@ use Config::Any::Perl;
 # test invalid config
 {
     my $file = 't/invalid/conf.pl';
-    my $config = eval { Config::Any::Perl->load( $file ) };
+    my $config;
+    my $loaded = eval {
+        $config = Config::Any::Perl->load( $file );
+        1;
+    };
 
+    ok( !$loaded, 'config load failed' );
     ok( !$config, 'config load failed' );
     ok( $@,       "error thrown ($@)" );
 }
@@ -28,8 +33,14 @@ use Config::Any::Perl;
 # parse error generated on invalid config
 {
     my $file = 't/invalid/conf.pl';
-    my $config = eval { Config::Any->load_files( { files => [$file], use_ext => 1} ) };
+    my $config;
+    my $loaded = eval {
+        $config = Config::Any::Perl->load( $file );
+        Config::Any->load_files( { files => [$file], use_ext => 1} );
+        1;
+    };
 
+    ok( !$loaded, 'config load failed' );
     ok( !$config, 'config load failed' );
     ok( $@,       "error thrown ($@)" );
 }
