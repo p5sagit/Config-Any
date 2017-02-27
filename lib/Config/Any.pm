@@ -6,7 +6,7 @@ use warnings;
 use Carp;
 use Module::Pluggable::Object ();
 
-our $VERSION = '0.28';
+our $VERSION = '0.29';
 
 =head1 NAME
 
