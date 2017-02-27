@@ -1,5 +1,6 @@
 Revision history for Config-Any
 
+0.29 - 2017-02-27
     - allow loading relative perl files even under taint mode (RT#120371)
     - throw errors when attempting to load perl files that do not exist
 
