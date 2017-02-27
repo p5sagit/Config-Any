@@ -55,7 +55,8 @@ sub load {
         # tainted.  untaint for backwards compatibility.
         my ($cwd) = Cwd::cwd() =~ /\A(.*)\z/s;
         $content = do File::Spec->rel2abs($file, $cwd);
-        $exception = $@;
+        $exception = $@ || $!
+            if !defined $content;
     }
     die $exception if $exception;
 

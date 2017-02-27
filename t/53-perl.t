@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 9;
+use Test::More tests => 12;
 use Config::Any;
 use Config::Any::Perl;
 
@@ -37,6 +37,20 @@ use Config::Any::Perl;
     my $loaded = eval {
         $config = Config::Any::Perl->load( $file );
         Config::Any->load_files( { files => [$file], use_ext => 1} );
+        1;
+    };
+
+    ok( !$loaded, 'config load failed' );
+    ok( !$config, 'config load failed' );
+    ok( $@,       "error thrown ($@)" );
+}
+
+# test missing config
+{
+    my $file = 't/invalid/missing.pl';
+    my $config;
+    my $loaded = eval {
+        $config = Config::Any::Perl->load( $file );
         1;
     };
 
