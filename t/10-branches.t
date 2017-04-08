@@ -3,10 +3,10 @@ use warnings;
 no warnings 'once';
 
 # use Test::Without::Module qw(YAML YAML::Syck Config::General XML::Simple JSON JSON::Syck Config::Tiny );
-use Test::More tests => 11;
+use Test::More tests => 9;
 
-use_ok( 'Config::Any' );
-use_ok( 'Config::Any::YAML' );
+use Config::Any;
+use Config::Any::YAML;
 
 
 {
