@@ -9,9 +9,31 @@ my %META = (
     test => { requires => {
       'Test::More'  => 0,
     } },
-    runtime => { requires => {
-      'Module::Pluggable::Object' => '3.6',
-    } },
+    runtime => {
+      requires => {
+        'Module::Pluggable::Object' => '3.6',
+      },
+      suggests => {
+        'Config::General'       => '2.47',
+        'Config::Tiny'          => 0,
+        'Cpanel::JSON::XS'      => 0,
+        'XML::Simple'           => 0,
+        'XML::NamespaceSupport' => 0,
+        'YAML::XS'              => 0,
+      },
+    },
+    develop => {
+      requires => {
+        'Config::General'       => '2.47',
+        'Config::Tiny'          => 0,
+        'Cpanel::JSON::XS'      => 0,
+        'XML::Simple'           => 0,
+        'XML::NamespaceSupport' => 0,
+        'YAML::XS'              => 0,
+        'Test::Pod'             => 0,
+        'Test::Pod::Coverage'   => 0,
+      },
+    },
   },
   resources => {
     repository => {
