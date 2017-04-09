@@ -34,7 +34,8 @@ sub load_parser_for {
 for my $f ( map { "t/conf/conf.$_" } keys %ext_map ) {
     my ( $skip, $mod ) = load_parser_for( $f );
     SKIP: {
-        skip "File loading backend for $mod not found", 9 if $skip;
+        skip "File loading backend for $mod not found", 9
+            if $skip && !$ENV{RELEASE_TESTING};
 
         ok( my $c_arr
                 = Config::Any->load_files(

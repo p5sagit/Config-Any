@@ -5,7 +5,7 @@ use Test::More;
 use Config::Any;
 use Config::Any::JSON;
 
-if ( !Config::Any::JSON->is_supported ) {
+if ( !Config::Any::JSON->is_supported && !$ENV{RELEASE_TESTING} ) {
     plan skip_all => 'JSON format not supported';
 }
 else {

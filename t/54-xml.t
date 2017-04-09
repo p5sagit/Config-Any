@@ -5,7 +5,7 @@ use Test::More;
 use Config::Any;
 use Config::Any::XML;
 
-if ( !Config::Any::XML->is_supported ) {
+if ( !Config::Any::XML->is_supported && !$ENV{RELEASE_TESTING} ) {
     plan skip_all => 'XML format not supported';
 }
 else {

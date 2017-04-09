@@ -5,7 +5,7 @@ use Test::More;
 use Config::Any;
 use Config::Any::General;
 
-if ( !Config::Any::General->is_supported ) {
+if ( !Config::Any::General->is_supported && !$ENV{RELEASE_TESTING}) {
     plan skip_all => 'Config::General format not supported';
 }
 else {

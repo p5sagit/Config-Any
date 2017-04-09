@@ -6,7 +6,7 @@ use Test::More;
 use Config::Any;
 use Config::Any::YAML;
 
-if ( !Config::Any::YAML->is_supported ) {
+if ( !Config::Any::YAML->is_supported && !$ENV{RELEASE_TESTING} ) {
     plan skip_all => 'YAML format not supported';
 }
 else {

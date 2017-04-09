@@ -5,7 +5,7 @@ use Test::More;
 use Config::Any;
 use Config::Any::INI;
 
-if ( !Config::Any::INI->is_supported ) {
+if ( !Config::Any::INI->is_supported && !$ENV{RELEASE_TESTING} ) {
     plan skip_all => 'INI format not supported';
 }
 else {
