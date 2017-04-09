@@ -3,8 +3,7 @@ use strict;
 use warnings;
 no warnings 'once';
 
-$|++;
-use Test::More tests => 54;
+use Test::More tests => 6*9;
 use Scalar::Util qw(blessed reftype);
 use Config::Any;
 use Config::Any::General;
@@ -34,7 +33,7 @@ sub load_parser_for {
 
 for my $f ( map { "t/conf/conf.$_" } keys %ext_map ) {
     my ( $skip, $mod ) = load_parser_for( $f );
-SKIP: {
+    SKIP: {
         skip "File loading backend for $mod not found", 9 if $skip;
 
         ok( my $c_arr

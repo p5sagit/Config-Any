@@ -23,8 +23,8 @@ else {
     my $file = 't/invalid/conf.json';
     my $config = eval { Config::Any::JSON->load( $file ) };
 
-    ok( !$config, 'config load failed' );
-    ok( $@,       "error thrown ($@)" );
+    is $config, undef, 'config load failed';
+    isnt $@, '', 'error thrown';
 }
 
 # parse error generated on invalid config
@@ -32,6 +32,6 @@ else {
     my $file = 't/invalid/conf.json';
     my $config = eval { Config::Any->load_files( { files => [$file], use_ext => 1} ) };
 
-    ok( !$config, 'config load failed' );
-    ok( $@,       "error thrown ($@)" );
+    is $config, undef, 'config load failed';
+    isnt $@, '', 'error thrown';
 }

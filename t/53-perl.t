@@ -25,9 +25,9 @@ use Config::Any::Perl;
         1;
     };
 
-    ok( !$loaded, 'config load failed' );
-    ok( !$config, 'config load failed' );
-    ok( $@,       "error thrown ($@)" );
+    ok !$loaded, 'config load failed';
+    is $config, undef, 'config load failed';
+    like $@, qr/syntax error/, 'error thrown';
 }
 
 # parse error generated on invalid config
@@ -40,9 +40,9 @@ use Config::Any::Perl;
         1;
     };
 
-    ok( !$loaded, 'config load failed' );
-    ok( !$config, 'config load failed' );
-    ok( $@,       "error thrown ($@)" );
+    ok !$loaded, 'config load failed';
+    is $config, undef, 'config load failed';
+    like $@, qr/syntax error/, 'error thrown';
 }
 
 # test missing config
@@ -54,7 +54,7 @@ use Config::Any::Perl;
         1;
     };
 
-    ok( !$loaded, 'config load failed' );
-    ok( !$config, 'config load failed' );
-    ok( $@,       "error thrown ($@)" );
+    ok !$loaded, 'config load failed';
+    is $config, undef, 'config load failed';
+    like $@, qr/No such file or directory/, 'error thrown';
 }

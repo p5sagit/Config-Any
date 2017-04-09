@@ -9,13 +9,24 @@ if ( !Config::Any::XML->is_supported ) {
     plan skip_all => 'XML format not supported';
 }
 else {
-    plan tests => 8;
+    plan tests => 7;
 }
 
 {
     my $config = Config::Any::XML->load( 't/conf/conf.xml' );
-    ok( $config );
-    is( $config->{ name }, 'TestApp' );
+    is_deeply $config, {
+        'Component' => {
+            'Controller::Foo' => {
+                'foo' => 'bar'
+            },
+        },
+        'name' => 'TestApp',
+        'Model' => {
+            'Model::Baz' => {
+                'qux' => 'xyzzy',
+            },
+        },
+    }, 'config loaded';
 }
 
 # test invalid config
@@ -28,8 +39,8 @@ SKIP: {
     my $file = 't/invalid/conf.xml';
     my $config = eval { Config::Any::XML->load( $file ) };
 
-    ok( !$config, 'config load failed' );
-    ok( $@,       "error thrown ($@)" );
+    is $config, undef, 'config load failed';
+    isnt $@, '', 'error thrown';
 }
 
 # test conf file with array ref
@@ -37,8 +48,20 @@ SKIP: {
     my $file = 't/conf/conf_arrayref.xml';
     my $config = eval { Config::Any::XML->load( $file ) };
 
-    ok( $config, 'config loaded' );
-    ok( !$@,     'no error thrown' );
+    is_deeply $config, {
+        'indicator' => 'submit',
+        'elements' => [
+            {
+                'label' => 'Label1',
+                'type' => 'Text',
+            },
+            {
+                'label' => 'Label2',
+                'type' => 'Text',
+            },
+        ],
+    }, 'config loaded';
+    is $@, '', 'no error thrown';
 }
 
 # parse error generated on invalid config
@@ -46,7 +69,7 @@ SKIP: {
     my $file = 't/invalid/conf.xml';
     my $config = eval { Config::Any->load_files( { files => [$file], use_ext => 1} ) };
 
-    ok( !$config, 'config load failed' );
-    ok( $@,       "error thrown ($@)" );
+    is $config, undef, 'config load failed';
+    isnt $@, '', 'error thrown';
 }
 

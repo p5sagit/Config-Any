@@ -64,11 +64,11 @@ eval {
     Config::Any->load_files(
         {   files   => \@files,
             use_ext => 1,
-            filter  => sub { die }
+            filter  => sub { die "reject" }
         }
     );
 };
-ok( $@, "filter breaks" );
+like $@, qr/reject/, "filter breaks";
 
 my @stems = qw(t/supported/conf);
 ok( Config::Any->load_stems( { stems => \@stems, use_ext => 1 } ),
