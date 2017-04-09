@@ -71,7 +71,7 @@ sub requires_any_of {
 
 =head1 AUTHOR
 
-Brian Cassidy E<lt>bricas@cpan.orgE<gt>
+Brian Cassidy <bricas@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

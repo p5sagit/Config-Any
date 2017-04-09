@@ -96,7 +96,7 @@ sub requires_any_of { 'JSON::DWIW', 'JSON::XS', 'JSON::Syck', 'JSON::PP', 'JSON'
 
 =head1 AUTHOR
 
-Brian Cassidy E<lt>bricas@cpan.orgE<gt>
+Brian Cassidy <bricas@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
@@ -112,6 +112,10 @@ it under the same terms as Perl itself.
 =item * L<Catalyst>
 
 =item * L<Config::Any>
+
+=item * L<Cpanel::JSON::XS>
+
+=item * L<JSON::MaybeXS>
 
 =item * L<JSON::DWIW>
 

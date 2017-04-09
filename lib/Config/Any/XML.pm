@@ -96,9 +96,9 @@ more information.
 
 =head1 AUTHORS
 
-Brian Cassidy E<lt>bricas@cpan.orgE<gt>
+Brian Cassidy <bricas@cpan.org>
 
-Joel Bernstein E<lt>rataxis@cpan.orgE<gt>
+Joel Bernstein <rataxis@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

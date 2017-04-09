@@ -42,8 +42,6 @@ configuration formats.
 
 =head1 INTERFACE
 
-=cut
-
 =head2 load_files( \%args )
 
     Config::Any->load_files( { files => \@files } );
@@ -339,7 +337,7 @@ L<https://rt.cpan.org/Public/Dist/Display.html?Name=Config-Any>.
 
 =head1 AUTHOR
 
-Joel Bernstein E<lt>rataxis@cpan.orgE<gt>
+Joel Bernstein <rataxis@cpan.org>
 
 =head1 CONTRIBUTORS
 

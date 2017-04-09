@@ -68,11 +68,11 @@ sub requires_all_of { [ 'Config::General' => '2.47' ] }
 
 =head1 AUTHOR
 
-Brian Cassidy E<lt>bricas@cpan.orgE<gt>
+Brian Cassidy <bricas@cpan.org>
 
 =head1 CONTRIBUTORS
 
-Joel Bernstein E<lt>rataxis@cpan.orgE<gt>
+Joel Bernstein <rataxis@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
