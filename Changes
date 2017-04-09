@@ -14,7 +14,7 @@ Revision history for Config-Any
     - load perl files directly, never possibly searching @INC
 
 0.27 2016-03-31
-    - depend on Module::Pluggable::Object directly instead of assuming it is 
+    - depend on Module::Pluggable::Object directly instead of assuming it is
       bundled with Module::Pluggable (RT #113148)
 
 0.26 2015-04-29
@@ -31,7 +31,7 @@ Revision history for Config-Any
     - fix test suite's method of checking availability of plugins
 
 0.22 2011-07-04
-    - add XML::NamespaceSupport to XML format deps, silence YAML warnings in 
+    - add XML::NamespaceSupport to XML format deps, silence YAML warnings in
       tests (caelum)
 
 0.21 2011-05-25
@@ -125,7 +125,7 @@ Revision history for Config-Any
       + 'force_plugins => [ qw(Config::Any::Foo Config::Any::Blah) ]' parameter
         to load_(files|stems)
       + $Config::Any::INI::MAP_SECTION_SPACE_TO_NESTED_KEY - boolean, defaulting
-        to on, controlling whether to map spaces in INI section headings 
+        to on, controlling whether to map spaces in INI section headings
         to nested hashrefs
 
 0.04 2006-08-07

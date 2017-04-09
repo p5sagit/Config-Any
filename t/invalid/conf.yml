@@ -1,7 +1,7 @@
 ---
 name: TestApp
 Component:
-	Controller::Foo:
+    Controller::Foo
         foo: bar
 Model:
     Model::Baz:

@@ -70,11 +70,11 @@ Brian Cassidy E<lt>bricas@cpan.orgE<gt>
 Copyright 2008-2009 by Brian Cassidy
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.
 
 =head1 SEE ALSO
 
-=over 4 
+=over 4
 
 =item * L<Config::Any>
 
