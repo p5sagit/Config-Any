@@ -335,7 +335,7 @@ No bugs have been reported.
 
 Please report any bugs or feature requests to
 C<bug-config-any@rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org>.
+L<https://rt.cpan.org/Public/Dist/Display.html?Name=Config-Any>.
 
 =head1 AUTHOR
 
