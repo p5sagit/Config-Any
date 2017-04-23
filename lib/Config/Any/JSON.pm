@@ -87,12 +87,21 @@ sub load {
 
 =head2 requires_any_of( )
 
-Specifies that this modules requires one of,  L<JSON::DWIW>, L<JSON::XS>,
-L<JSON::Syck> or L<JSON> in order to work.
+Specifies that this modules requires one of, L<Cpanel::JSON::XS>,
+L<JSON::MaybeXS>, L<JSON::DWIW>, L<JSON::XS>, L<JSON::Syck>, L<JSON::PP> or
+L<JSON> in order to work.
 
 =cut
 
-sub requires_any_of { 'JSON::DWIW', 'JSON::XS', 'JSON::Syck', 'JSON::PP', 'JSON' }
+sub requires_any_of { qw(
+  Cpanel::JSON::XS
+  JSON::MaybeXS
+  JSON::DWIW
+  JSON::XS
+  JSON::Syck
+  JSON::PP
+  JSON
+) }
 
 =head1 AUTHOR
 
