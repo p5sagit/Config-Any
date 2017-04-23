@@ -5,6 +5,16 @@ no warnings 'once';
 use Test::More;
 use Config::Any;
 use Config::Any::YAML;
+use Data::Dumper;
+
+sub _dump {
+  local $Data::Dumper::Terse = 1;
+  local $Data::Dumper::Sortkeys = 1;
+  local $Data::Dumper::Indent = 1;
+  my $out = Data::Dumper::Dumper(@_);
+  $out =~ s/\s*\z//;
+  $out eq 'undef' ? undef : $out;
+}
 
 if ( !Config::Any::YAML->is_supported && !$ENV{RELEASE_TESTING} ) {
     plan skip_all => 'YAML format not supported';
@@ -24,7 +34,8 @@ else {
     my $file = 't/invalid/conf.yml';
     my $config = eval { Config::Any::YAML->load( $file ) };
 
-    is $config, undef, 'config load failed';
+
+    is _dump($config), undef, 'config load failed';
     isnt $@, '', 'error thrown';
 }
 
@@ -33,6 +44,6 @@ else {
     my $file = 't/invalid/conf.yml';
     my $config = eval { Config::Any->load_files( { files => [$file], use_ext => 1} ) };
 
-    is $config, undef, 'config load failed';
+    is _dump($config), undef, 'config load failed';
     isnt $@, '', 'error thrown';
 }
