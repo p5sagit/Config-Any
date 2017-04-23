@@ -56,5 +56,5 @@ use Config::Any::Perl;
 
     ok !$loaded, 'config load failed';
     is $config, undef, 'config load failed';
-    like $@, qr/No such file or directory/, 'error thrown';
+    isnt $@, '', 'error thrown';
 }
