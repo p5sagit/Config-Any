@@ -1,5 +1,6 @@
 Revision history for Config-Any
 
+0.31 - 2017-04-23
     - test cleanups
     - better diagnostics for test failures
     - don't run pod tests on user machines
