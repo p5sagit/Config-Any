@@ -1,5 +1,13 @@
 Revision history for Config-Any
 
+    - test cleanups
+    - better diagnostics for test failures
+    - don't run pod tests on user machines
+    - handle unsupported Config::General versions better
+    - refactored module loading
+    - include optional prereqs in suggests
+    - pod cleanups
+
 0.30 - 2017-03-28
     - don't use YAML::Syck on perl 5.8.8 or below, where it is broken
     - ensure tarball does not contain SCHILY headers
