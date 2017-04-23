@@ -31,6 +31,8 @@ else {
 
 # test invalid config
 {
+    local $TODO = 'YAML::Syck parses invalid files'
+        if $INC{'YAML/Syck.pm'};
     my $file = 't/invalid/conf.yml';
     my $config = eval { Config::Any::YAML->load( $file ) };
 
@@ -41,6 +43,8 @@ else {
 
 # parse error generated on invalid config
 {
+    local $TODO = 'YAML::Syck parses invalid files'
+        if $INC{'YAML/Syck.pm'};
     my $file = 't/invalid/conf.yml';
     my $config = eval { Config::Any->load_files( { files => [$file], use_ext => 1} ) };
 
