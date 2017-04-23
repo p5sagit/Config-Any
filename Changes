@@ -1,5 +1,11 @@
 Revision history for Config-Any
 
+    - allow YAML::Syck to fail its error tests
+    - improved diagnostics in YAML test
+    - include a full list of modules used in JSON documentation
+    - be less strict checking error messages in tests
+    - add test to report optional prereq versions
+
 0.31 - 2017-04-23
     - test cleanups
     - better diagnostics for test failures
