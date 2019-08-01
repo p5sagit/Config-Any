@@ -323,13 +323,7 @@ L<JSON::Syck|JSON::Syck>
 L<YAML::Syck|YAML::Syck>
 L<XML::Simple|XML::Simple>
 
-=head1 INCOMPATIBILITIES
-
-None reported.
-
 =head1 BUGS AND LIMITATIONS
-
-No bugs have been reported.
 
 Please report any bugs or feature requests to
 C<bug-config-any@rt.cpan.org>, or through the web interface at
