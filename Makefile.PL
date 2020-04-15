@@ -14,7 +14,7 @@ my %META = (
         'Module::Pluggable::Object' => '3.6',
       },
       suggests => {
-        'Config::General'       => '2.47',
+        'Config::General'       => '2.48',
         'Config::Tiny'          => 0,
         'Cpanel::JSON::XS'      => 0,
         'XML::Simple'           => 0,
@@ -24,7 +24,7 @@ my %META = (
     },
     develop => {
       requires => {
-        'Config::General'       => '2.47',
+        'Config::General'       => '2.48',
         'Config::Tiny'          => 0,
         'Cpanel::JSON::XS'      => 0,
         'XML::Simple'           => 0,
@@ -55,7 +55,9 @@ my %META = (
 
 my %MM_ARGS = (
   PREREQ_PM => {
-    (eval { require Config::General } ? ('Config::General' => '2.47') : ()),
+    (eval { require Config::General } ? (
+      'Config::General' => $META{prereqs}{runtime}{suggests}{'Config::General'}
+    ) : ()),
   },
 );
 
