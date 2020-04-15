@@ -37,8 +37,8 @@ my %META = (
   },
   resources => {
     repository => {
-      url => 'git://git.shadowcat.co.uk/p5sagit/Config-Any.git',
-      web => 'http://git.shadowcat.co.uk/gitweb/gitweb.cgi?p=p5sagit/Config-Any.git;a=summary',
+      url => 'https://github.com/p5sagit/Config-Any.git',
+      web => 'https://github.com/p5sagit/Config-Any',
       type => 'git',
     },
     bugtracker => {
