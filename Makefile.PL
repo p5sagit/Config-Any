@@ -53,13 +53,7 @@ my %META = (
   x_authority => 'cpan:RATAXIS',
 );
 
-my %MM_ARGS = (
-  PREREQ_PM => {
-    (eval { require Config::General } ? (
-      'Config::General' => $META{prereqs}{runtime}{suggests}{'Config::General'}
-    ) : ()),
-  },
-);
+my %MM_ARGS = ();
 
 ## BOILERPLATE ###############################################################
 require ExtUtils::MakeMaker;
