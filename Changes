@@ -1,5 +1,10 @@
 Revision history for Config-Any
 
+    - update docs describe which modules are needed for which formats
+    - update Config::General requirement for conf files to a non-broken
+      version (2.48)
+    - don't try to upgrade old Config::General versions
+    - fix is_supported method verifying the version of required modules
     - documentation cleanups
 
 0.32 - 2017-04-23
